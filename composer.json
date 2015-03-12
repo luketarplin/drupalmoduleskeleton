@@ -1,5 +1,6 @@
 {
     "name": "luketarplin/drupalmoduleskeleton",
+	"version" : "dev",
     "description": "Create a Skeleton Drupal 8 Module",
 	"keywords": ["Drupal","Drupal 8","CMS","Module","Skeleton","Generator"],
     "authors": [
