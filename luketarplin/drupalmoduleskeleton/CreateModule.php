@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CreateModule extends Command
 {
-	public static function run()
+	public static function runTask()
 	{
 		$this->getIO()->write(__METHOD__);
 	}

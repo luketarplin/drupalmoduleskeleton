@@ -19,7 +19,7 @@
 		}
     },
 	"scripts": {
-        "drupal:create:module": "drupal-create-module"
+        "drupal:create:module": "luketarplin\\drupalmoduleskeleton\\CreateModule::runTask"
     },
 	"extra": {
 		"class": [
