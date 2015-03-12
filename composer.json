@@ -19,7 +19,7 @@
     },
 	"extra": {
 		"class": [
-			"luketarplin\\drupalmoduleskeleton\\DrupalModuleSkeletonPlugin"
+			"luketarplin\\drupalmoduleskeleton\\DrupalModuleSkeletonInstallerPlugin"
 		]
 	}
 }
