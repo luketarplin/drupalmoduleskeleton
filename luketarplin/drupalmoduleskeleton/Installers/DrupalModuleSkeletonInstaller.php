@@ -31,6 +31,8 @@ class DrupalModuleSkeletonInstaller extends LibraryInstaller
 	 */
 	public function supports($type) 
 	{
+		echo $type.\PHP_EOL;
+	
 		return $type === '';
 	}
 }
