@@ -26,4 +26,9 @@ class CreateModuleCommand extends Command
     {
         $this->getIO()->write(__METHOD__);
     }
+	
+	public static function run()
+	{
+		$this->getIO()->write(__METHOD__);
+	}
 }

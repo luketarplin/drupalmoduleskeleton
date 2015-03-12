@@ -24,6 +24,6 @@
 		]
 	},
     "scripts": {
-        "drupal-create-module": "luketarplin\\drupalmoduleskeleton\\Command\\CreateModuleCommand"
+        "drupal-create-module": "luketarplin\\drupalmoduleskeleton\\Command\\CreateModuleCommand::run"
     }
 }
