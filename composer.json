@@ -23,7 +23,10 @@
 			"luketarplin\\drupalmoduleskeleton\\DrupalModuleSkeletonInstallerPlugin"
 		]
 	},
+	"bin": [
+		"bin/drupal-create-module"
+	],
     "scripts": {
-        "drupal-create-module": "luketarplin\\drupalmoduleskeleton\\Command\\CreateModuleCommand::run"
+        "drupal-create-module": "drupal-create-module"
     }
 }
