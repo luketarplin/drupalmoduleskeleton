@@ -1,0 +1,14 @@
+{
+    "name": "luketarplin/drupalmoduleskeleton",
+    "description": "Create a Skeleton Drupal 8 Module",
+    "authors": [
+        {
+            "name": "Luke Alexander Tarplin",
+            "email": "luke.tarplin@gmail.com"
+        }
+    ],
+    "type": "composer-plugin",
+    "require": {
+        "composer-plugin-api": "1.0.0"
+    }
+}
