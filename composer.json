@@ -1,6 +1,7 @@
 {
     "name": "luketarplin/drupalmoduleskeleton",
     "description": "Create a Skeleton Drupal 8 Module",
+	"keywords": ["Drupal","Drupal 8","CMS","Module","Skeleton","Generator"],
     "authors": [
         {
             "name": "Luke Alexander Tarplin",
@@ -12,6 +13,8 @@
         "composer-plugin-api": "1.0.0"
     },
     "autoload": {
-        "psr-0": { "luketarplin": "vendor/" }
+        "psr-0": { 
+			"luketarplin": "" 
+		}
     }
 }
