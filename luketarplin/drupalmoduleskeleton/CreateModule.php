@@ -13,7 +13,7 @@ class CreateModule extends Command
 {
 	public static function runTask()
 	{
-		$class = new self();
+		$class = new self(__CLASS__);
 		
 		$class->getIO()->write(__METHOD__);
 	}
