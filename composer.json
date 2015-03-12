@@ -26,8 +26,12 @@
 	"bin": [
 		"bin/drupal-create-module"
 	],
-    "scripts": {
-        "drupal-create-module": "bin/drupal-create-module",
-		"test": "bin/drupal-create-module"
-    }
+    "scripts": [
+        {
+			"drupal-create-module": "bin/drupal-create-module"
+		},
+		{
+			"test": "bin/drupal-create-module"
+		}
+    ]
 }
