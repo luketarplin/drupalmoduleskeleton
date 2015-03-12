@@ -5,13 +5,14 @@
 */
 namespace luketarplin\drupalmoduleskeleton;
 
+use Composer\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CreateModule
+class CreateModule extends Command
 {
 	public static function run()
 	{
-		echo 'hit';
+		$this->getIO()->write(__METHOD__);
 	}
 }
