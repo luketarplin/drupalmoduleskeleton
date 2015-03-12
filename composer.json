@@ -16,5 +16,10 @@
         "psr-0": { 
 			"luketarplin": "" 
 		}
-    }
+    },
+	"extra": {
+		"class": [
+			"luketarplin\\drupalmoduleskeleton\\DrupalModuleSkeletonPlugin"
+		]
+	}
 }
