@@ -13,5 +13,5 @@
     },
     "autoload": {
         "psr-4": { "luketarplin": "src/" }
-    },
+    }
 }
