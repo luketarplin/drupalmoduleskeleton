@@ -31,6 +31,6 @@ class DrupalModuleSkeletonInstaller extends LibraryInstaller
 	 */
 	public function supports($type) 
 	{
-		return $type === '';
+		return $type === 'composer-plugin';
 	}
 }
