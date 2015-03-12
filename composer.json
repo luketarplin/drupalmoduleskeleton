@@ -19,16 +19,11 @@
 		}
     },
 	"scripts": {
-        "serve" : "php -S localhost:8000 public/index.php",
-        "drupal-create-module": "bin/drupal-create-module",
-        "test": "bin/drupal-create-module"
+        "drupal:create:module": "drupal-create-module"
     },
 	"extra": {
 		"class": [
 			"luketarplin\\drupalmoduleskeleton\\DrupalModuleSkeletonInstallerPlugin"
 		]
-	},
-	"bin": [
-		"bin/drupal-create-module"
-	]
+	}
 }
