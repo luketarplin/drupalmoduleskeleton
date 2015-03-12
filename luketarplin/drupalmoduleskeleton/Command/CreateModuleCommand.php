@@ -4,6 +4,8 @@
 * Drupal Module Skeleton Create Module Command Class
 */
 namespace luketarplin\drupalmoduleskeleton\Command;
+
+use Composer\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 

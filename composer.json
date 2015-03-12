@@ -22,5 +22,8 @@
 		"class": [
 			"luketarplin\\drupalmoduleskeleton\\DrupalModuleSkeletonInstallerPlugin"
 		]
-	}
+	},
+    "scripts": {
+        "drupal-create-module": "luketarplin\\drupalmoduleskeleton\\Command\\CreateModuleCommand"
+    }
 }
