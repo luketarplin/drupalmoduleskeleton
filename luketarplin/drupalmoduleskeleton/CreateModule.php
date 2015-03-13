@@ -7,9 +7,12 @@ namespace luketarplin\drupalmoduleskeleton;
 
 use Composer\Script\Event;
 use Composer\IO\ConsoleIO;
+use Symfony\Component\Yaml\Dumper;
 
 class CreateModule
 {
+	const INLINE_LEVEL = 1;
+
 	/**
 	* Composer\IO\ConsoleIO $IO Input / Output Object
 	*/
@@ -74,14 +77,14 @@ EOT;
 			  ->build();
 		
 		//Debugging Output
-		$reflection	= new \ReflectionClass($class);
+		/*$reflection	= new \ReflectionClass($class);
 			  
 		foreach($reflection->getProperties() as $properties){
 			if($properties->getName() !== 'IO'){
 				$properties->setAccessible(true);
 				var_dump($properties->getName(),$properties->getValue($class));
 			}
-		}
+		}*/
 		//End of Debugging Output
 	}
 	
@@ -192,6 +195,20 @@ EOT;
 	public function build()
 	{
 		//Create a new module directory
-		$created 	= mkdir("{$this->modulePath}/{$this->shortName}", 0700);
+		$dir 					= mkdir("{$this->modulePath}/{$this->shortName}", 0700);
+		
+		//Build the Yaml data
+		$yaml					= new Dumper();
+		$infoYaml				= $yaml->dump(array(
+			'name' 				=> $this->longName,
+			'description' 		=> $this->description,
+			'package'			=> $this->package,
+			'type'				=> $this->defaults['type'],
+			'core'				=> $this->defaults['core'],
+			'dependencies'		=> (( ! is_null($this->defaults['dependencies']) ) ? explode(',',$this->defaults['dependencies']) : '')
+		), self::INLINE_LEVEL);
+		
+		//Write the *.info.yml file
+		file_put_contents("{$this->modulePath}/{$this->shortName}/{$this->shortName}.info.yml",$infoYaml);
 	}
 }
