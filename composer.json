@@ -1,6 +1,7 @@
 {
     "name": "luketarplin/drupalmoduleskeleton",
 	"version" : "dev",
+	"minimum-stability": "stable",
     "description": "Create a Skeleton Drupal 8 Module",
 	"keywords": ["Drupal","Drupal 8","CMS","Module","Skeleton","Generator"],
     "authors": [
@@ -12,7 +13,7 @@
     "type": "composer-plugin",
     "require": {
         "composer-plugin-api": "1.0.0",
-		"symfony/yaml": "2.7.*@dev"
+		"symfony/yaml": ""
     },
     "autoload": {
         "psr-0": { 
