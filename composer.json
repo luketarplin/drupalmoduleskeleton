@@ -13,7 +13,7 @@
     "type": "composer-plugin",
     "require": {
         "composer-plugin-api": "1.0.0",
-		"symfony/yaml": ""
+		"symfony/yaml": "*"
     },
     "autoload": {
         "psr-0": { 
