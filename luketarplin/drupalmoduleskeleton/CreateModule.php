@@ -291,6 +291,16 @@ EOT;
  * @file
  * {$this->longName}.
  */
+ 
+ /**
+ * Implements hook_help().
+ */
+function {$this->shortName}_help(\$path, \$arg) {
+  switch (\$path) {
+    case 'admin/help#{$this->shortName}':
+      return t('Help Text here...');
+  }
+}
 EOT;
 
 		//Write the *.module file
