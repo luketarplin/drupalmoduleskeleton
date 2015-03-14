@@ -78,7 +78,8 @@ EOT;
 			  ->askModuleDescription()
 			  ->askAddRouting()
 			  ->askInstall()
-			  ->build();
+			  ->build()
+			  ->finish();
 		
 		//Debugging Output
 		/*$reflection	= new \ReflectionClass($class);
@@ -308,5 +309,23 @@ EOT;
 		
 		//Build the src dir
 		mkdir("{$this->modulePath}/{$this->shortName}/src", 0700);
+		
+		return $this;
 	}
+	
+	/**
+	* Finish up and output the files created
+	*/
+	public function finish()
+	{
+		$this->IO->write(PHP_EOL.'Built the following files & directories: ');
+		$this->IO->write(str_repeat('=',40));
+	
+		$files 	= new \FilesystemIterator("{$this->modulePath}/{$this->shortName}", \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::UNIX_PATHS);
+		foreach ($files as $fileinfo) {
+			$this->IO->write($fileinfo->getFilename());
+		}
+		
+		return;
+	}	
 }
