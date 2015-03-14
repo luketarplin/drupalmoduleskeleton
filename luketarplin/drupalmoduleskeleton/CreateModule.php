@@ -12,6 +12,8 @@ use Symfony\Component\Yaml\Dumper;
 class CreateModule
 {
 	const INLINE_LEVEL = 1;
+	
+	const BUILD_TAG    = 'Built using the Drupal 8 Module Skeleton - https://github.com/luketarplin/drupalmoduleskeleton';
 
 	/**
 	* Composer\IO\ConsoleIO $IO Input / Output Object
@@ -36,6 +38,7 @@ class CreateModule
 		'core'				=> '8.x',
 		'dependencies' 		=>	null,
 		'routing' 			=> true,
+		'install'			=> true,
 	);
 
 	/**
@@ -74,6 +77,7 @@ EOT;
 			  ->askModuleDependencies()
 			  ->askModuleDescription()
 			  ->askAddRouting()
+			  ->askInstall()
 			  ->build();
 		
 		//Debugging Output
@@ -128,7 +132,7 @@ EOT;
 									throw new \RuntimeException('Module short name can not be empty!');
 								elseif(is_dir("{$modulePath}/{$answer}"))
 									throw new \RuntimeException('A module with that short code already exists!');
-								return $answer;
+								return strtolower($answer);
 							});
 		$this->longName  = $this->IO->askAndValidate('Enter a module long name (eg SMTP Authentication Support): ',
 							function($answer){
@@ -189,6 +193,19 @@ EOT;
 		return $this;
 	}
 	
+	public function askInstall()
+	{
+		$this->defaults['install'] 			= 'Y' === $this->IO->askAndValidate('Do you want an install file (Y / N): ',
+													  function($answer){
+														if($answer !== 'N' && $answer !== 'Y')
+															throw new \RuntimeException('Please choose Y or N!');
+															
+														return $answer;
+													  });
+		
+		return $this;
+	}
+	
 	/**
 	* Build the module based on options gathered above
 	*/
@@ -207,8 +224,79 @@ EOT;
 			'core'				=> $this->defaults['core'],
 			'dependencies'		=> (( ! is_null($this->defaults['dependencies']) ) ? explode(',',$this->defaults['dependencies']) : '')
 		), self::INLINE_LEVEL);
+
+		//Add Build Comments
+		$infoYaml				.= '#generator: '.self::BUILD_TAG;
 		
 		//Write the *.info.yml file
 		file_put_contents("{$this->modulePath}/{$this->shortName}/{$this->shortName}.info.yml",$infoYaml);
+	
+		//Build *.routing.yml file if required
+		if($this->defaults['routing'] === true){
+			$upperShortName 	= strtoupper($this->shortName);
+		
+			$routingYaml		= <<<EOT
+#{$this->shortName}.config:
+#  path: '/admin/config/system/{$this->shortName}'
+#  defaults:
+#    _title: '{$this->longName}'
+#    _form: 'Drupal\\{$this->shortName}\Form\\{$upperShortName}ConfigForm'
+#  requirements:
+#    _permission: 'administer {$this->shortName} module'
+EOT;
+		
+			//Write the *.routing.yml file
+			file_put_contents("{$this->modulePath}/{$this->shortName}/{$this->shortName}.routing.yml",$routingYaml);
+		}
+		
+		//Build *.install file if required
+		if($this->defaults['routing'] === true){
+			$install			= <<<EOT
+<?php
+
+/**
+ * @file
+ * The installation instructions for {$this->longName}.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function {$this->shortName}_install() {
+	//Setting default config vars.
+	//\Drupal::service('config.factory')->getEditable('{$this->shortName}.settings')
+	//	->set('', 1)
+	//	->save();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function {$this->shortName}_uninstall() {
+	//Setting default config vars.
+	//\Drupal::service('config.factory')->getEditable('{$this->shortName}.settings')
+	//	->delete();
+}
+EOT;
+		
+			//Write the *.install file
+			file_put_contents("{$this->modulePath}/{$this->shortName}/{$this->shortName}.install",$install);
+		}
+		
+		//Build *.module file		
+		$module			= <<<EOT
+<?php
+
+/**
+ * @file
+ * {$this->longName}.
+ */
+EOT;
+
+		//Write the *.module file
+		file_put_contents("{$this->modulePath}/{$this->shortName}/{$this->shortName}.module",$module);
+		
+		//Build the src dir
+		mkdir("{$this->modulePath}/{$this->shortName}/src", 0700);
 	}
 }
