@@ -223,9 +223,22 @@ EOT;
 			'package'			=> $this->package,
 			'type'				=> $this->defaults['type'],
 			'core'				=> $this->defaults['core'],
-			'dependencies'		=> (( ! is_null($this->defaults['dependencies']) ) ? explode(',',$this->defaults['dependencies']) : '')
 		), self::INLINE_LEVEL);
 
+		//Check whether we have any dependencies
+		if( ! is_null($this->defaults['dependencies'])){
+			//Add Dependencies
+			$deps				= explode(',',$this->defaults['dependencies']);
+			
+			if(is_array($deps)){
+				$infoYaml			.= 'dependencies:'.\PHP_EOL;
+				
+				foreach($deps as $dep){
+					$infoYaml		.= '  - '.$dep.\PHP_EOL;
+				}
+			}
+		}
+		
 		//Add Build Comments
 		$infoYaml				.= '#generator: '.self::BUILD_TAG;
 		
