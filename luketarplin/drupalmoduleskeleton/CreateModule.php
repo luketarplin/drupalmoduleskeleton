@@ -51,7 +51,8 @@ class CreateModule
    |#|_|*||#| \ \ |#|_| ||#|   /#/__\ \ |*|___  BY LUKE TARPLIN
    |____/ |_|  \_\|_____||_|  /_/    \_\|_____|
    
-EOT;
+EOT
+;
 
 	public function __construct(ConsoleIO $IO)
 	{
@@ -80,17 +81,6 @@ EOT;
 			  ->askInstall()
 			  ->build()
 			  ->finish();
-		
-		//Debugging Output
-		/*$reflection	= new \ReflectionClass($class);
-			  
-		foreach($reflection->getProperties() as $properties){
-			if($properties->getName() !== 'IO'){
-				$properties->setAccessible(true);
-				var_dump($properties->getName(),$properties->getValue($class));
-			}
-		}*/
-		//End of Debugging Output
 	}
 	
 	/**
@@ -257,7 +247,8 @@ EOT;
 #    _form: 'Drupal\\{$this->shortName}\Form\\{$upperShortName}ConfigForm'
 #  requirements:
 #    _permission: 'administer {$this->shortName} module'
-EOT;
+EOT
+;
 		
 			//Write the *.routing.yml file
 			file_put_contents("{$this->modulePath}/{$this->shortName}/{$this->shortName}.routing.yml",$routingYaml);
@@ -291,8 +282,8 @@ function {$this->shortName}_uninstall() {
 	//\Drupal::service('config.factory')->getEditable('{$this->shortName}.settings')
 	//	->delete();
 }
-EOT;
-		
+EOT
+;
 			//Write the *.install file
 			file_put_contents("{$this->modulePath}/{$this->shortName}/{$this->shortName}.install",$install);
 		}
@@ -315,7 +306,8 @@ function {$this->shortName}_help(\$path, \$arg) {
       return t('Help Text here...');
   }
 }
-EOT;
+EOT
+;
 
 		//Write the *.module file
 		file_put_contents("{$this->modulePath}/{$this->shortName}/{$this->shortName}.module",$module);
