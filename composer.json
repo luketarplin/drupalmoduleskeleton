@@ -27,5 +27,6 @@
 		"class": [
 			"luketarplin\\drupalmoduleskeleton\\DrupalModuleSkeletonInstallerPlugin"
 		]
-	}
+	},
+	"license": "MIT"
 }
